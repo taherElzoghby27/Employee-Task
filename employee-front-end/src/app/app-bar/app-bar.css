@@ -1,0 +1,13 @@
+.app-bar-background {
+  background-color: deepskyblue;
+  height: 50px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+h2 {
+  text-align: center;
+  color: white;
+}
