@@ -14,7 +14,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="emp in $ctrl.employees track by emp.employeeCode">
+        <tr ng-repeat="emp in $formCtrl.employees track by emp.employeeCode">
             <td>{{ emp.employeeCode }}</td>
             <td>{{ emp.employeeName }}</td>
             <td>{{ emp.birthDate }}</td>
@@ -25,7 +25,7 @@
             <td>{{ emp.directManager }}</td>
             <td>{{ emp.contractType }}</td>
             <td>
-                <span ng-class="['status', $ctrl.getStatusClass(emp.status)]">
+                <span ng-class="['status', $formCtrl.getStatusClass(emp.status)]">
                     {{ emp.status }}
                 </span>
             </td>

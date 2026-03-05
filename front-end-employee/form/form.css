@@ -1,3 +1,14 @@
+.home-body {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 75px);
+}
+
+employee-data-view {
+    flex: 1;
+    overflow-y: auto;
+}
+
 form {
     display: flex;
     flex-direction: row;
@@ -7,6 +18,7 @@ form {
     gap: 6px;
     max-width: 100%;
     padding: 6px;
+    flex-shrink: 0;
 }
 
 button {
