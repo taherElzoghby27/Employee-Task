@@ -1,7 +1,9 @@
 <label>
     {{ $ctrl.label }}
     <select ng-model="$ctrl.field">
-        <option value="" disabled>{{ $ctrl.labelHint }}</option>
-        <option ng-repeat="value in $ctrl.selectValues track by $index" value="{{value}}">{{value}}</option>
+        <option value="" disabled>{{ $ctrl.selectValues.length === 0 ? 'Loading...' : $ctrl.labelHint }}</option>
+        <option ng-repeat="item in $ctrl.selectValues track by $index" value="{{item.name}}">
+            {{item.name}}
+        </option>
     </select>
 </label>

@@ -2,14 +2,14 @@ package models;
 
 public class ContractType {
     private Long id;
-    private String type;
+    private String name;
 
     public ContractType() {
     }
 
-    public ContractType(Long id, String type) {
+    public ContractType(Long id, String name) {
         this.id = id;
-        this.type = type;
+        this.name = name;
     }
 
     public Long getId() {
@@ -20,11 +20,11 @@ public class ContractType {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getName() {
+        return name;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -38,7 +38,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		StringBuilder queryBuilder = new StringBuilder();
 		queryBuilder.append("SELECT u.ID AS employee_id, u.NAME AS employee_name, u.code AS employee_code, ");
 		queryBuilder.append("u.BIRTH_CITY AS birth_city, u.BIRTH_DATE AS birth_date, ");
-		queryBuilder.append("d.NAME AS department_name, j.TITLE AS job, ct.TYPE AS contract_type, ");
+		queryBuilder.append("d.NAME AS department_name, j.TITLE AS job, ct.NAME AS contract_type, ");
 		queryBuilder.append("u2.NAME AS direct_manager, u.STATUS AS status ");
 		queryBuilder.append("FROM TEST.USERTABLE u ");
 		queryBuilder.append("LEFT JOIN TEST.JOB j ON u.JOB_ID = j.ID ");
@@ -66,7 +66,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			queryBuilder.append("AND j.TITLE LIKE ? ");
 		}
 		if (employee.getContractType() != null && !employee.getContractType().isEmpty()) {
-			queryBuilder.append("AND ct.TYPE LIKE ? ");
+			queryBuilder.append("AND ct.NAME LIKE ? ");
 		}
 		if (employee.getDirectManager() != null && !employee.getDirectManager().isEmpty()) {
 			queryBuilder.append("AND u2.NAME LIKE ? ");

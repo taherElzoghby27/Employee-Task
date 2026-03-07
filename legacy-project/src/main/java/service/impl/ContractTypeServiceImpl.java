@@ -19,7 +19,7 @@ public class ContractTypeServiceImpl implements ContractTypeService {
 
     @Override
     public List<ContractType> getContractTypes() {
-        String query = "SELECT ID, TYPE FROM TEST.CONTRACTTYPE";
+        String query = "SELECT ID, NAME FROM TEST.CONTRACTTYPE";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query);
              ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -35,7 +35,7 @@ public class ContractTypeServiceImpl implements ContractTypeService {
         while (resultSet.next()) {
             ContractType contractType = new ContractType();
             contractType.setId(resultSet.getLong("ID"));
-            contractType.setType(resultSet.getString("TYPE"));
+            contractType.setName(resultSet.getString("NAME"));
             contractTypes.add(contractType);
         }
         return contractTypes;
