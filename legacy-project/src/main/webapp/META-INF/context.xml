@@ -1,0 +1,11 @@
+<Context>
+
+  <Resource name="employee_db"
+            type="javax.sql.DataSource"
+            username="system"
+            password="hr"
+            driverClassName="oracle.jdbc.OracleDriver"
+            url="jdbc:oracle:thin:@//localhost:1521/XEPDB1"
+            />
+
+</Context>
