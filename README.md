@@ -27,22 +27,22 @@ A specialized technical task focused on implementing a **High-Precision Employee
 ### � Precise Code Search
 Quickly locate specific employees using their unique code.
 
-![Code Search](docs/images/mona_search.png)
+![Code Search](legacy-project/docs/images/mona_search.png)
 
 ### 🏢 Department Filtering
 Dynamic filtering to show all employees within a specific department.
 
-![Department Search](docs/images/engineering_search.png)
+![Department Search](legacy-project/docs/images/engineering_search.png)
 
 ### 📄 Searching by Contract Type
 Filtered results based on employment terms like Full-Time or Part-Time.
 
-![Contract Type Search](docs/images/contract_type_search.png)
+![Contract Type Search](legacy-project/docs/images/contract_type_search.png)
 
 ### 📅 Advanced Date & City Search
 Combining location and birth date for granular result targeting.
 
-![Multi-Criteria Search](docs/images/omar_zaid_search.png)
+![Multi-Criteria Search](legacy-project/docs/images/omar_zaid_search.png)
 
 ---
 
