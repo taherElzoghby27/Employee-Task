@@ -6,27 +6,27 @@
             <th>Birth Date</th>
             <th>Birth City</th>
             <th>Employee ID</th>
-            <th>Department</th>
             <th>Job Title</th>
+            <th>Department</th>
             <th>Direct Manager</th>
             <th>Contract Type</th>
             <th>Status</th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="emp in $ctrl.employees track by emp.employeeCode">
-            <td>{{ emp.employeeCode }}</td>
-            <td>{{ emp.employeeName }}</td>
-            <td>{{ emp.birthDate }}</td>
-            <td>{{ emp.birthCity }}</td>
-            <td>{{ emp.employeeId }}</td>
-            <td>{{ emp.department }}</td>
-            <td>{{ emp.jobTitle }}</td>
-            <td>{{ emp.directManager }}</td>
-            <td>{{ emp.contractType }}</td>
+        <tr ng-repeat="employee in $ctrl.employees track by employee.employeeCode">
+            <td>{{ employee.employeeCode }}</td>
+            <td>{{ employee.employeeName }}</td>
+            <td>{{ employee.birthDate }}</td>
+            <td>{{ employee.birthCity }}</td>
+            <td>{{ employee.employeeId }}</td>
+            <td>{{ employee.job }}</td>
+            <td>{{ employee.departmentName }}</td>
+            <td>{{ employee.directManager }}</td>
+            <td>{{ employee.contractType }}</td>
             <td>
-                <span ng-class="['status', $ctrl.getStatusClass(emp.status)]">
-                    {{ emp.status }}
+                <span ng-class="['status', $ctrl.getStatusClass(employee.status)]">
+                    {{ employee.status }}
                 </span>
             </td>
         </tr>

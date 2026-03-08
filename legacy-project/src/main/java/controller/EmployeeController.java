@@ -1,12 +1,14 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.sql.DataSource;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import java.text.SimpleDateFormat;
 
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
@@ -41,7 +43,7 @@ public class EmployeeController extends HttpServlet{
 
 	private Employee mapRequestToEmployee(HttpServletRequest req) {
 		Employee employee = new Employee();
-		employee.setEmployeeId(parseLong(req.getParameter("employee_id")));
+		employee.setEmployeeId(parseLong(req.getParameter("employeeId")));
 		employee.setEmployeeCode(req.getParameter("employeeCode"));
 		employee.setEmployeeName(req.getParameter("employeeName"));
 		employee.setBirthCity(req.getParameter("birthCity"));
@@ -65,15 +67,11 @@ public class EmployeeController extends HttpServlet{
 		}
 	}
 
-	private Date parseDate(String value) {
+	private String parseDate(String value) {
 		if (value == null || value.trim().isEmpty() || "null".equalsIgnoreCase(value)) {
 			return null;
 		}
-		try {
-			return Date.valueOf(value);
-		} catch (IllegalArgumentException e) {
-			return null;
-		}
+		return value;
 	}
 
 	private void writeJsonResponse(HttpServletResponse resp, Object data) throws IOException {

@@ -43,7 +43,7 @@ angular.module("myEmployeeApp").component("formEmployee", {
             employeeName: '',
             birthDate: '',
             birthCity: '',
-            employeeId: '',
+            employeeId: null,
             department: '',
             jobTitle: '',
             directManager: '',
@@ -62,7 +62,19 @@ angular.module("myEmployeeApp").component("formEmployee", {
         };
 
         $formCtrl.loadEmployees = function () {
-            employeeService.getEmployees($formCtrl.employeeForm).then(function (data) {
+            // Clone form to avoid changing the UI model while formatting
+            var searchParams = angular.copy($formCtrl.employeeForm);
+
+            // Format Date object to local yyyy-MM-dd string
+            if (searchParams.birthDate instanceof Date) {
+                var d = searchParams.birthDate;
+                var year = d.getFullYear();
+                var month = ('0' + (d.getMonth() + 1)).slice(-2);
+                var day = ('0' + d.getDate()).slice(-2);
+                searchParams.birthDate = year + '-' + month + '-' + day;
+            }
+
+            employeeService.getEmployees(searchParams).then(function (data) {
                 $formCtrl.employees = data;
                 console.log('Employees:', $formCtrl.employees);
             });

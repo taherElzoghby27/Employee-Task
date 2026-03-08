@@ -22,7 +22,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String query = buildSearchQuery(employee);
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-
 			setParameters(preparedStatement, employee);
 
 			try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -37,7 +36,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private String buildSearchQuery(Employee employee) {
 		StringBuilder queryBuilder = new StringBuilder();
 		queryBuilder.append("SELECT u.ID AS employee_id, u.NAME AS employee_name, u.code AS employee_code, ");
-		queryBuilder.append("u.BIRTH_CITY AS birth_city, u.BIRTH_DATE AS birth_date, ");
+		queryBuilder.append("u.BIRTH_CITY AS birth_city, TO_CHAR(u.BIRTH_DATE, 'YYYY-MM-DD') AS birth_date, ");
 		queryBuilder.append("d.NAME AS department_name, j.TITLE AS job, ct.NAME AS contract_type, ");
 		queryBuilder.append("u2.NAME AS direct_manager, u.STATUS AS status ");
 		queryBuilder.append("FROM TEST.USERTABLE u ");
@@ -46,7 +45,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		queryBuilder.append("LEFT JOIN TEST.CONTRACTTYPE ct ON u.CONTRACT_TYPE_ID = ct.ID ");
 		queryBuilder.append("LEFT JOIN TEST.USERTABLE u2 ON u.MANAGER_ID = u2.ID ");
 		queryBuilder.append("WHERE 1=1 ");
-
+		System.out.println(employee.getBirthDate());
+		if (employee.getEmployeeId() != null&&employee.getEmployeeId() !=0) {
+			queryBuilder.append("AND u.ID = ? ");
+		}
 		if (employee.getEmployeeCode() != null && !employee.getEmployeeCode().isEmpty()) {
 			queryBuilder.append("AND u.CODE LIKE ? ");
 		}
@@ -56,8 +58,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		if (employee.getBirthCity() != null && !employee.getBirthCity().isEmpty()) {
 			queryBuilder.append("AND u.BIRTH_CITY LIKE ? ");
 		}
-		if (employee.getBirthDate() != null) {
-			queryBuilder.append("AND u.BIRTH_DATE = ? ");
+		if (employee.getBirthDate() != null && !employee.getBirthDate().isEmpty()) {
+			queryBuilder.append("AND u.BIRTH_DATE = TO_DATE(?, 'YYYY-MM-DD') ");
 		}
 		if (employee.getDepartmentName() != null && !employee.getDepartmentName().isEmpty()) {
 			queryBuilder.append("AND d.NAME LIKE ? ");
@@ -79,6 +81,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	private void setParameters(PreparedStatement preparedStatement, Employee employee) throws Exception {
 		int paramIndex = 1;
+		if (employee.getEmployeeId() != null&&employee.getEmployeeId() !=0) {
+			preparedStatement.setLong(paramIndex++,employee.getEmployeeId());
+		}
 		if (employee.getEmployeeCode() != null && !employee.getEmployeeCode().isEmpty()) {
 			preparedStatement.setString(paramIndex++, "%" + employee.getEmployeeCode() + "%");
 		}
@@ -88,8 +93,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		if (employee.getBirthCity() != null && !employee.getBirthCity().isEmpty()) {
 			preparedStatement.setString(paramIndex++, "%" + employee.getBirthCity() + "%");
 		}
-		if (employee.getBirthDate() != null) {
-			preparedStatement.setDate(paramIndex++, new java.sql.Date(employee.getBirthDate().getTime()));
+		if (employee.getBirthDate() != null && !employee.getBirthDate().isEmpty()) {
+			preparedStatement.setString(paramIndex++, employee.getBirthDate());
 		}
 		if (employee.getDepartmentName() != null && !employee.getDepartmentName().isEmpty()) {
 			preparedStatement.setString(paramIndex++, "%" + employee.getDepartmentName() + "%");
@@ -116,7 +121,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			emp.setEmployeeName(resultSet.getString("employee_name"));
 			emp.setEmployeeCode(resultSet.getString("employee_code"));
 			emp.setBirthCity(resultSet.getString("birth_city"));
-			emp.setBirthDate(resultSet.getDate("birth_date"));
+			emp.setBirthDate(resultSet.getString("birth_date"));
 			emp.setDepartmentName(resultSet.getString("department_name"));
 			emp.setJob(resultSet.getString("job"));
 			emp.setContractType(resultSet.getString("contract_type"));

@@ -1,13 +1,12 @@
 package models;
 
-import java.util.Date;
 
 public class Employee {
     private Long employeeId;
     private String employeeName;
     private String employeeCode;
     private String birthCity;
-    private Date birthDate;
+    private String birthDate;
     private String departmentName;
     private String job;
     private String contractType;
@@ -17,7 +16,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(Long employeeId, String employeeName, String employeeCode, String birthCity, Date birthDate,
+    public Employee(Long employeeId, String employeeName, String employeeCode, String birthCity, String birthDate,
                     String departmentName, String job, String contractType, String directManager, String status) {
         this.employeeId = employeeId;
         this.employeeName = employeeName;
@@ -63,11 +62,11 @@ public class Employee {
         this.birthCity = birthCity;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
