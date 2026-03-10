@@ -1,11 +1,11 @@
 # � Employee Search Task
 
-[![Java](https://img.shields.io/badge/Java-17-orange.svg)](https://www.oracle.com/java/)
+[![Java](https://img.shields.io/badge/Java-8+-orange.svg)](https://www.oracle.com/java/)
 [![AngularJS](https://img.shields.io/badge/AngularJS-1.8-red.svg)](https://angularjs.org/)
-[![JakartaEE](https://img.shields.io/badge/JakartaEE-10-blue.svg)](https://jakarta.ee/)
+[![JavaEE](https://img.shields.io/badge/JavaEE-7-blue.svg)](https://www.oracle.com/java/technologies/java-ee-sdk-7-downloads.html)
 [![Maven](https://img.shields.io/badge/Maven-3.8-C71A48.svg)](https://maven.apache.org/)
 
-A specialized technical task focused on implementing a **High-Precision Employee Search Engine**. This project demonstrates advanced multi-criteria filtering logic using a **Jakarta EE** backend and a reactive **AngularJS** frontend.
+A specialized technical task focused on implementing a **High-Precision Employee Search Engine**. This project demonstrates advanced multi-criteria filtering logic using a **Java EE 7** backend and a reactive **AngularJS** frontend.
 
 ---
 
@@ -49,9 +49,9 @@ Combining location and birth date for granular result targeting.
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Java 11+
+- Java 8+
 - Apache Maven 3.x
-- GlassFish 7.x (Jakarta EE 10)
+- GlassFish 4.1.x (Java EE 7)
 
 ### 🛠️ Detailed Setup Instructions
 
@@ -70,14 +70,19 @@ mvn clean install
 ```
 The generated file will be located at `target/legacy-project.war`.
 
-#### 3. Deploy to GlassFish
+#### 3. Setup JDBC Resource in GlassFish
+Before deploying, you must configure a **JDBC Connection Pool** and a **JDBC Resource** in your GlassFish Server:
+- **JNDI Name**: `employee_db`
+- Ensure the database (Oracle) is accessible with the credentials specified in your pool.
+
+#### 4. Deploy to GlassFish
 Copy the generated WAR file to your GlassFish's `autodeploy` directory.
 ```bash
 # Example for Linux/macOS
-cp target/legacy-project.war /path/to/glassfish7/glassfish/domains/domain1/autodeploy/
+cp target/legacy-project.war /path/to/glassfish4/glassfish/domains/domain1/autodeploy/
 
 # Example for Windows (PowerShell)
-Copy-Item target\legacy-project.war -Destination C:\path\to\glassfish7\glassfish\domains\domain1\autodeploy\
+Copy-Item target\legacy-project.war -Destination C:\path\to\glassfish4\glassfish\domains\domain1\autodeploy\
 ```
 
 #### 4. Access the Application

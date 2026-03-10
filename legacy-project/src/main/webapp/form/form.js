@@ -1,7 +1,7 @@
 angular.module("myEmployeeApp").service("employeeService", function ($http) {
     var $employeeService = this;
     $employeeService.getEmployees = function ($employeeForm) {
-        return $http.get('http://localhost:8080/legacy-project/employee', { params: $employeeForm })
+        return $http.get('employee', { params: $employeeForm })
             .then(function (response) {
                 return response.data;
             }).catch(function (error) {
@@ -10,7 +10,7 @@ angular.module("myEmployeeApp").service("employeeService", function ($http) {
             });
     };
     $employeeService.getContractTypes = function () {
-        return $http.get('http://localhost:8080/legacy-project/contract-type')
+        return $http.get('contract-type')
             .then(function (response) {
                 return response.data;
             }).catch(function (error) {
@@ -19,7 +19,7 @@ angular.module("myEmployeeApp").service("employeeService", function ($http) {
             });
     };
     $employeeService.getDepartments = function () {
-        return $http.get('http://localhost:8080/legacy-project/department')
+        return $http.get('department')
             .then(function (response) {
                 return response.data;
             }).catch(function (error) {
