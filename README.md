@@ -51,7 +51,7 @@ Combining location and birth date for granular result targeting.
 ### Prerequisites
 - Java 11+
 - Apache Maven 3.x
-- Apache Tomcat 10.1
+- GlassFish 7.x (Jakarta EE 10)
 
 ### 🛠️ Detailed Setup Instructions
 
@@ -70,18 +70,18 @@ mvn clean install
 ```
 The generated file will be located at `target/legacy-project.war`.
 
-#### 3. Deploy to Apache Tomcat
-Copy the generated WAR file to your Tomcat's `webapps` directory.
+#### 3. Deploy to GlassFish
+Copy the generated WAR file to your GlassFish's `autodeploy` directory.
 ```bash
 # Example for Linux/macOS
-cp target/legacy-project.war /path/to/tomcat/webapps/
+cp target/legacy-project.war /path/to/glassfish7/glassfish/domains/domain1/autodeploy/
 
 # Example for Windows (PowerShell)
-Copy-Item target\legacy-project.war -Destination C:\path\to\tomcat\webapps\
+Copy-Item target\legacy-project.war -Destination C:\path\to\glassfish7\glassfish\domains\domain1\autodeploy\
 ```
 
 #### 4. Access the Application
-Start your Tomcat server and navigate to the following URL:
+Once the file is deployed, navigate to the following URL:
 `http://localhost:8080/legacy-project/`
 
 ---
@@ -159,6 +159,6 @@ VALUES ('Hoda Amr', 'EMP-008', TO_DATE('1998-12-05', 'YYYY-MM-DD'), 'Giza', 1, 1
 ```
 
 ### 🚀 Final Step
-Deploy the `.war` to Tomcat and navigate to `http://localhost:8080/legacy-project/`
+Deploy the `.war` to GlassFish and navigate to `http://localhost:8080/legacy-project/`
 
 ---
